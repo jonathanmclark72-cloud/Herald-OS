@@ -164,6 +164,9 @@ jobs:
             apps/desktop/release/*.dmg
             apps/desktop/release/*.zip
           if-no-files-found: error
+          # Kept one day: a tag run copies them into the draft release, and a manual run's builds must
+          # be downloaded within a day.
+          retention-days: 1
 
   linux:
     name: Linux tarball (${{ matrix.arch }})
@@ -211,6 +214,7 @@ jobs:
             apps/desktop/release/herald-os-*-linux-*.tar.gz
             apps/desktop/release/herald-os-*-linux-*.tar.gz.sha256
           if-no-files-found: error
+          retention-days: 1
 
   release:
     name: Attach to the draft release
